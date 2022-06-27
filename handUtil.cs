@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 public static class HandUtil{
@@ -13,11 +12,14 @@ public static class HandUtil{
 
 
   public static int valueAllHands( List<Card> h){
-  
+
+    if(h.Count <= 5){
+      return valueHand(h);
+    }
     
     int highValue = 0;
-    for(int i = 0; i <=5; i++){
-      for(int j = i+1; j <=6; j++){
+    for(int i = 0; i <=h.Count-2; i++){
+      for(int j = i+1; j <=h.Count-1; j++){
         if(j != i){
           var subH = h.ConvertAll(c => new Card(c.suit,c.rank));
           subH.RemoveAt(j);
